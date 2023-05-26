@@ -1,16 +1,22 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.filmmakersacademy.com/wp-content/uploads/2020/01/EOQ_tMzWAAIWpoV.jpeg);">
+  <div class="container d-flex flex-column">
+    <h1><%= @list.name %></h1 class="text-white bg-dark">
+    <div><%= link_to "Create a new bookmark", new_list_bookmark_path(@list), class: "btn btn-primary mt-4 mb-4" %></div>
+    <div><%= link_to "Come back to Lists", lists_path(@lists), class: "btn btn-primary" %></div>
+  </div>
+</div>
 <div class="container d-flex flex-column">
-  <h1><%= @list.name %></h1>
   <% @list.bookmarks.each do |bookmark| %>
-    <br>
-    <%= bookmark.movie.title %>
-    <br>
-    <%= bookmark.movie.poster_url %>
-    <br>
-    <%= bookmark.comment %>
-    <%= link_to 'Delete', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <div class="d-flex card-product mt-4 md-4">
+      <%= image_tag bookmark.movie.poster_url %>
+      <div class="d-flex flex-column">
+        <div class="m-2"><h2><%= bookmark.movie.title %></h2></div>
+        <h4 class="m-2">Overview</h4>
+        <div class="m-2"><p><%= bookmark.movie.overview %></p></div>
+        <h4 class="m-2">Comment</h4>
+        <div class="m-2"><p><%= bookmark.comment %></p></div>
+        <div class="m-2"><%= link_to 'Delete', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %></div>
+      </div>
+    </div>
   <% end %>
-  <br>
-  <%= link_to "Create a new bookmark", new_list_bookmark_path(@list), class: "btn btn-primary" %>
-  <br>
-  <%= link_to "< Lists", lists_path(@lists), class: "btn btn-primary" %>
 </div>

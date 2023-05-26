@@ -9,6 +9,7 @@
 
 puts "Cleaning database..."
 
+Bookmark.destroy_all
 Movie.destroy_all
 
 puts "Creating restaurants..."
@@ -24,7 +25,7 @@ movies["results"].each do |movie|
   Movie.create!(
     title: movie["original_title"],
     overview: movie["overview"],
-    poster_url: movie["poster_path"],
+    poster_url: "https://image.tmdb.org/t/p/w500/#{movie["poster_path"]}",
     rating: movie["vote_average"]
   )
 end
